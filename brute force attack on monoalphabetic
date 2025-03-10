@@ -1,0 +1,16 @@
+import string
+import itertools
+
+def brute_force_monoalphabetic(ciphertext):
+    alphabet = string.ascii_lowercase
+    ciphertext = ciphertext.lower()
+    
+    try:
+        for attempt, replacements in enumerate(itertools.product(alphabet, repeat=len(ciphertext)), start=1):
+            decrypted_text = "".join(replacements[i] if char in alphabet else char for i, char in enumerate(ciphertext))
+            print(f"Attempt {attempt}: {decrypted_text}")
+    except KeyboardInterrupt:
+        print("\nBrute-force stopped by user.")
+
+ciphertext = input("Enter the encrypted text: ")
+brute_force_monoalphabetic(ciphertext)
